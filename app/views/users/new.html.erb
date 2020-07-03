@@ -25,11 +25,23 @@
 -->
 
 <%= form_for(@user) do |i|%>
-    <%= i.label :username %>
+    <%= i.label :username, "Enter Your Username" %>
     <%= i.text_field :username %><br />
-    <%= i.label :email %>
+    <%= i.label :email, "Enter Your Email" %>
     <%= i.email_field :email %><br />
-    <%= i.label :password %>
+    <%= i.label :password, "ENter Your Password" %>
     <%= i.password_field :password %><br />
-    <%= i.submit "Signup"%>
+    <%= i.submit "Add User"%>
   <% end %>
+
+  <% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this article from being saved:</h2>
+ 
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
